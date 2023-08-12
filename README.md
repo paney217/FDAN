@@ -27,8 +27,8 @@ We train models in the paper on the HNU and AUC dataset, the trained models are 
 - tscnn
 
 ## Datasets
-- AUC, from the American University in Cairo
-- HNU, from Hunan University
+- data_AUC, from the American University in Cairo
+- data_HNU, from Hunan University
 
 - [1] Y. Abouelnaga, H. Eraqi, and M. Moustafa. "Real-time Distracted Driver Posture Classification". Neural Information Processing Systems (NIPS 2018), Workshop on Machine Learning for Intelligent Transportation Systems, Dec. 2018. https://arxiv.org/abs/1706.09498
 - [2] H. Eraqi, Y. Abouelnaga, M. Saad, M. Moustafa, "Driver Distraction Identification with an Ensemble of Convolutional Neural Networks", Journal of Advanced Transportation, Machine Learning in Transportation (MLT) Issue, 2019. https://www.hindawi.com/journals/jat/2019/4125865/
