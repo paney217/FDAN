@@ -10,6 +10,11 @@ from data_loader.ImageNet_datasets import ImageNetData
 from data_loader.driver_dataset import DriverDataset
 import model.resnet_fdan as resnet_fdan
 import model.resnet_adnet as resnet_adnet
+import model.resnet as resnet
+import model.resnet_se as resnet_se
+import model.fcnn as fcnn
+import model.resnet_GMM as resnet_GMM
+import model.resnet_tscnn as resnet_tscnn
 from trainer.trainer import Trainer
 from utils.logger import Logger
 from PIL import Image
@@ -62,7 +67,7 @@ def main(args):
 
     #train_datasets = datasets.ImageFolder(os.path.join(args.data_root, 't256'), data_transforms['train'])
     #val_datasets   = datasets.ImageFolder(os.path.join(args.data_root, 'v256'), data_transforms['val'])
-    data_root = '/home/cwh/data/xwc博士代码2/data_AUC/'  #'/home/cwh/data/xwc博士代码2/data_HNU/' 
+    data_root = './data_HNU/' 
     train_datasets = DriverDataset(data_root, "Train_data_list.csv", transform=data_transforms['train'])
     val_datasets = DriverDataset(data_root, "Test_data_list.csv", transform=data_transforms['train'])
     print("train: {}, test: {}".format(len(train_datasets), len(val_datasets)))
@@ -93,16 +98,27 @@ def main(args):
         my_model = resnet_fdan.resnet101_fdan(pretrained=True, num_classes=num_classes)
     elif 'resnet152_fdan' == args.model:
         my_model = resnet_fdan.resnet152_fdan(pretrained=True, num_classes=num_classes)
-    elif 'resnet18' == args.model:
-        my_model = resnet_fdan.resnet18(pretrained=True, num_classes=num_classes)
-    elif 'resnet34' == args.model:
-        my_model = resnet_fdan.resnet34(pretrained=True, num_classes=num_classes)
-    elif 'alexnet' == args.model:
-        my_model = models.alexnet(pretrained=False, num_classes=num_classes)
     elif 'resnet18_adnet' == args.model:
         my_model = resnet_adnet.resnet18_adnet(pretrained=True, num_classes=num_classes)
+    elif 'resnet34_adnet' == args.model:
+        my_model = resnet_adnet.resnet34_adnet(pretrained=True, num_classes=num_classes)
+    elif 'alexnet' == args.model:
+        my_model = models.alexnet(pretrained=False, num_classes=num_classes)
+    elif 'resnet18' == args.model:
+        my_model = resnet.resnet18(pretrained=True, num_classes=num_classes) 
+    elif 'resnet18_se' == args.model:
+        my_model = resnet_se.resnet18_se(pretrained=True, num_classes=num_classes)
+    elif 'fcnn18' == args.model:
+        my_model = fcnn.fcnn18(pretrained=True, num_classes=num_classes)
+    elif 'resnet18_GMM' == args.model:
+        my_model = resnet_GMM.resnet18(pretrained=True, num_classes=num_classes)
+    elif 'TSCNN' == args.model:
+        my_model = resnet_tscnn.resnet18(pretrained=True, num_classes=num_classes)
     else:
         raise ModuleNotFoundError
+
+elif 'resnet34' == args.model:
+        my_model = resnet.resnet34(pretrained=True, num_classes=num_classes)
 
     print(my_model)
     print(sum([param.nelement() for param in my_model.parameters()]))
