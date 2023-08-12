@@ -17,14 +17,14 @@ python train.py --model <model name> --batch_size <the batch size> --num_epochs 
 For example, python train.py --model resnet18_fdan --batch_size 64 --num_epochs 60 --display
 
 ## Models
-resnet18
-alexnet
-resnet18_se
-resnet18_fdan
-resnet18_adnet
-fcnn18
-resnet18_GMM
-tscnn
+- resnet18
+- alexnet
+- resnet18_se
+- resnet18_fdan
+- resnet18_adnet
+- fcnn18
+- resnet18_GMM
+- tscnn
 
 ## Datasets
 AUC, from the American University in Cairo
