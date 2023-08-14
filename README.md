@@ -24,10 +24,10 @@
 - We train models in the paper on the HNU and AUC datasets, the trained models are stored in .ckpt format.  
 - The dataset path: in the train.py file, set data_ Root='/ Data_ AUC/' if the experiment uses the AUC dataset; set data_ Root='/ Data_ HNU/' if the experiment uses the HNU dataset.
 - The models: resnet18, alexnet, resnet18_se, resnet18_fdan, resnet18_adnet, fcnn18, resnet18_GMM, tscnn
-- We can use the following commands to train the model.  
+- We can use the following commands to train a model.  
  i.e., python train.py --model resnet18_fdan --batch_size 64 --num_epochs 60 --display  
 The model name, batch size and the number of epochs can be set according to the training requirements.
-- If the models are trained using leaving-N-driver-out cross validation, the files Train_data_list_N.csv and Test_data_list_N.csv are selected as the training and validation sets
+- If the models are trained using leaving-N-driver-out cross validation, the files Train_data_list_N.csv and Test_data_list_N.csv are selected as the training and validation sets, respectively.
 
 ## Test
 
