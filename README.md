@@ -1,38 +1,35 @@
-
-## Introduction
-The codes are [PyTorch](https://pytorch.org/) re-implement version for paper: FDAN: Fuzzy Deep Attention Networks for Driver Behavior Recognition.
+## Tips
+- Any problem, free to contact the authors via emails: whchen@hnu.edu.cn or xgqman@hnu.edu.cn.   
+- Do not post issues with GitHub as much as possible, just in case that I could not receive the emails from github thus ignore the posted issues.  
+- The paper of FDAN: Fuzzy Deep Attention Networks for Driver Behavior Recognition is being reviewed in Journal of Systems Architecture.
 
 ## Requirements
-- Python3
-- PyTorch 0.4.1
-- tensorboardX (optional)
-- torchnet
-- pretrainedmodels (optional)
+- python >=3.6
+- torch >=1.9.0
+- tensorboardX >=2.10.1
+- numpy >=1.19.5
+- matplotlib >=3.3.4
+- opencv >=4.6.0
+- torchvision >=0.10.0
+- cuda >=11.5
 
-## Results
-We train models in the paper on the HNU and AUC dataset, the trained models are stored in .pkt format.
-
-## Command
-- python train.py --model <model name> --batch_size <the batch size> --num_epochs <the number of epochs> --display
-- For example, python train.py --model resnet18_fdan --batch_size 64 --num_epochs 60 --display
-
-## Models
-- resnet18
-- alexnet
-- resnet18_se
-- resnet18_fdan
-- resnet18_adnet
-- fcnn18
-- resnet18_GMM
-- tscnn
+## Pre-train Models
+|[ResNet18](https://download.pytorch.org/models/resnet18-5c106cde.pth) | [ResNet34](https://download.pytorch.org/models/resnet34-333f7ec4.pth) | [ResNet50](https://download.pytorch.org/models/resnet50-19c8e357.pth) |[ResNet101](https://download.pytorch.org/models/resnet101-5d3b4d8f.pth) | [ResNet152](https://download.pytorch.org/models/resnet152-b121ed2d.pth)|| [Alexnet](https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth)|
 
 ## Datasets
 - data_AUC, from the American University in Cairo
 - data_HNU, from Hunan University
 
-- [1] Y. Abouelnaga, H. Eraqi, and M. Moustafa. "Real-time Distracted Driver Posture Classification". Neural Information Processing Systems (NIPS 2018), Workshop on Machine Learning for Intelligent Transportation Systems, Dec. 2018. https://arxiv.org/abs/1706.09498
-- [2] H. Eraqi, Y. Abouelnaga, M. Saad, M. Moustafa, "Driver Distraction Identification with an Ensemble of Convolutional Neural Networks", Journal of Advanced Transportation, Machine Learning in Transportation (MLT) Issue, 2019. https://www.hindawi.com/journals/jat/2019/4125865/
+## Training
+- We train models in the paper on the HNU and AUC datasets, the trained models are stored in .ckpt format.  
+- The dataset path: in the train.py file, set data_ Root='/ Data_ AUC/' if the experiment uses the AUC dataset; set data_ Root='/ Data_ HNU/' if the experiment uses the HNU dataset.
+- The models: resnet18, alexnet, resnet18_se, resnet18_fdan, resnet18_adnet, fcnn18, resnet18_GMM, tscnn
+- We can use the following commands to train the model.  
+ i.e., python train.py --model resnet18_fdan --batch_size 64 --num_epochs 60 --display  
+The model name, batch size and the number of epochs can be set according to the training requirements.
+- If the models are trained using leaving-N-driver-out cross validation, the files Train_data_list_N.csv and Test_data_list_N.csv are selected as the training and validation sets
 
-## Notes
-The paper of FDAN is being reviewed in Journal of Systems Architecture. 
-- E-mail: whchen@hnu.edu.cn
+## Test
+
+
+
