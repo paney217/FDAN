@@ -17,8 +17,9 @@
 |[ResNet18](https://download.pytorch.org/models/resnet18-5c106cde.pth) | [ResNet34](https://download.pytorch.org/models/resnet34-333f7ec4.pth) | [ResNet50](https://download.pytorch.org/models/resnet50-19c8e357.pth) |[ResNet101](https://download.pytorch.org/models/resnet101-5d3b4d8f.pth) | [ResNet152](https://download.pytorch.org/models/resnet152-b121ed2d.pth)| [Alexnet](https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth)|
 
 ## Datasets
-- [data_AUC](http://esnl.hnu.edu.cn/info/1027/2482.htm), from the American University in Cairo
-- [data_HNU](http://esnl.hnu.edu.cn/dataset/data_HNU.rar), from Hunan University
+- [data_AUC](https://deng155.blob.core.windows.net/aaa/data_AUC_v1.rar), from the American University in Cairo
+- [data_HNU](https://deng155.blob.core.windows.net/aaa/data_HNU.rar), from Hunan University
+- [Datasets in ESNL](http://esnl.hnu.edu.cn/dataset/data_HNU.rar), from Hunan University
 
 ## Training
 - We train models in the paper on the HNU and AUC datasets, the trained models are stored in .ckpt format.  
