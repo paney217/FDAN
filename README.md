@@ -14,16 +14,16 @@
 - cuda >=11.5
 
 ## Pre-train Models
-|[ResNet18](https://download.pytorch.org/models/resnet18-5c106cde.pth) | [ResNet34](https://download.pytorch.org/models/resnet34-333f7ec4.pth) | [ResNet50](https://download.pytorch.org/models/resnet50-19c8e357.pth) |[ResNet101](https://download.pytorch.org/models/resnet101-5d3b4d8f.pth) | [ResNet152](https://download.pytorch.org/models/resnet152-b121ed2d.pth)|| [Alexnet](https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth)|
+|[ResNet18](https://download.pytorch.org/models/resnet18-5c106cde.pth) | [ResNet34](https://download.pytorch.org/models/resnet34-333f7ec4.pth) | [ResNet50](https://download.pytorch.org/models/resnet50-19c8e357.pth) |[ResNet101](https://download.pytorch.org/models/resnet101-5d3b4d8f.pth) | [ResNet152](https://download.pytorch.org/models/resnet152-b121ed2d.pth)| [Alexnet](https://download.pytorch.org/models/alexnet-owt-4df8aa71.pth)|
 
 ## Datasets
-- data_AUC, from the American University in Cairo
-- data_HNU, from Hunan University
+- [data_AUC](http://esnl.hnu.edu.cn/info/1027/2482.htm), from the American University in Cairo
+- [data_HNU](http://esnl.hnu.edu.cn/dataset/data_HNU.rar), from Hunan University
 
 ## Training
 - We train models in the paper on the HNU and AUC datasets, the trained models are stored in .ckpt format.  
 - The dataset path: in the train.py file, set data_ Root='/ Data_ AUC/' if the experiment uses the AUC dataset; set data_ Root='/ Data_ HNU/' if the experiment uses the HNU dataset.
-- The models: resnet18, alexnet, resnet18_se, resnet18_fdan, resnet18_adnet, fcnn18, resnet18_GMM, tscnn
+- The models include the proposed model resnet18_fdan, and the comparison baselines, such as resnet18, alexnet, resnet18_se, resnet18_fdan, resnet18_adnet, fcnn18 and resnet18_GMM.
 - We can use the following commands to train a model.  
  i.e., python train.py --model resnet18_fdan --batch_size 64 --num_epochs 60 --display  
 The model name, batch size and the number of epochs can be set according to the training requirements.
