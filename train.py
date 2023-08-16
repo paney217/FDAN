@@ -65,8 +65,7 @@ def main(args):
         ])
     }
 
-    #train_datasets = datasets.ImageFolder(os.path.join(args.data_root, 't256'), data_transforms['train'])
-    #val_datasets   = datasets.ImageFolder(os.path.join(args.data_root, 'v256'), data_transforms['val'])
+   
     data_root = './data_HNU/' 
     train_datasets = DriverDataset(data_root, "Train_data_list.csv", transform=data_transforms['train'])
     val_datasets = DriverDataset(data_root, "Test_data_list.csv", transform=data_transforms['train'])
@@ -84,7 +83,7 @@ def main(args):
     is_use_cuda = torch.cuda.is_available()
     cudnn.benchmark = True
 
-    num_classes = 10
+    num_classes = 5
 
     if  'resnet50' == args.model:
         my_model = models.resnet50(pretrained=True, num_classes=num_classes)
@@ -133,7 +132,7 @@ elif 'resnet34' == args.model:
     optimizer = optim.SGD(my_model.parameters(), lr=0.01, momentum=0.9, weight_decay=1e-4)
     lr_schedule = lr_scheduler.MultiStepLR(optimizer, milestones=[30, 60], gamma=0.1)           #
 
-    metric = [ClassErrorMeter([1,5], True)]
+    metric = [ClassErrorMeter([1,3], True)]
     start_epoch = 0
     num_epochs = args.num_epochs
 
