@@ -14,6 +14,7 @@ import numpy as np
 import model.resnet_fdan as resnet_fdan
 import model.resnet_adnet as resnet_adnet
 import model.resnet_se as resnet_se
+import model.resnet as resnet
 import model.fcnn as fcnn
 import csv
 
@@ -44,6 +45,8 @@ def test_and_generate_result_round(model_name='resnet18_fdan', num_classes=5, im
         my_model = resnet_se.resnet18_se(pretrained=True, num_classes=num_classes)
     elif 'fcnn18' == model_name:
         my_model = fcnn.fcnn18(pretrained=True, num_classes=num_classes)
+    elif 'resnet18' == model_name:
+        my_model = resnet.resnet18(pretrained=True, num_classes=num_classes)
     else:
         raise ModuleNotFoundError
  
@@ -58,7 +61,7 @@ def test_and_generate_result_round(model_name='resnet18_fdan', num_classes=5, im
     my_model.eval()
  
  
-    with open(os.path.join('checkpoint', model_name+'_'+str(img_size)+'_'+RESULT_FILE), 'w', encoding='utf-8') as fd:
+    with open(os.path.join('checkpoint', model_name+'_'+ RESULT_FILE), 'w', encoding='utf-8') as fd:
 
         fd.write('No. ' + 'image_name ' + 'gt'  + 'pred')
 
@@ -105,7 +108,7 @@ def test_and_generate_result_round(model_name='resnet18_fdan', num_classes=5, im
 
 
 if __name__ == '__main__':
-    model_name = 'resnet18_fdan'  #'resnet18_fdan'
+    model_name = 'resnet18'  #'resnet18_fdan'
     num_classes = 5
     img_size = 224
     test_and_generate_result_round(model_name, num_classes, img_size)
