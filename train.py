@@ -13,8 +13,8 @@ import model.resnet_adnet as resnet_adnet
 import model.resnet as resnet
 import model.resnet_se as resnet_se
 import model.fcnn as fcnn
-import model.resnet_GMM as resnet_GMM
-import model.resnet_tscnn as resnet_tscnn
+
+
 from trainer.trainer import Trainer
 from utils.logger import Logger
 from PIL import Image
@@ -65,9 +65,10 @@ def main(args):
         ])
     }
 
-   
-    data_root = './data_HNU/' 
-    train_datasets = DriverDataset(data_root, "Train_data_list.csv", transform=data_transforms['train'])
+    #train_datasets = datasets.ImageFolder(os.path.join(args.data_root, 't256'), data_transforms['train'])
+    #val_datasets   = datasets.ImageFolder(os.path.join(args.data_root, 'v256'), data_transforms['val'])
+    data_root = '/home/cwh/data/datasets/data_HNU/'  #'/home/cwh/data/xwc博士代码2/data_HNU/' 
+    train_datasets = DriverDataset(data_root, "Train_data_list.csv", transform=data_transforms['train'])  #Train_data_list.csv
     val_datasets = DriverDataset(data_root, "Test_data_list.csv", transform=data_transforms['train'])
     print("train: {}, test: {}".format(len(train_datasets), len(val_datasets)))
 
@@ -97,29 +98,28 @@ def main(args):
         my_model = resnet_fdan.resnet101_fdan(pretrained=True, num_classes=num_classes)
     elif 'resnet152_fdan' == args.model:
         my_model = resnet_fdan.resnet152_fdan(pretrained=True, num_classes=num_classes)
+    elif 'resnet18' == args.model:
+        my_model = resnet.resnet18(pretrained=True, num_classes=num_classes)
+    elif 'resnet34' == args.model:
+        my_model = resnet.resnet34(pretrained=True, num_classes=num_classes)
+    elif 'alexnet' == args.model:
+        my_model = models.alexnet(pretrained=False, num_classes=num_classes)
     elif 'resnet18_adnet' == args.model:
         my_model = resnet_adnet.resnet18_adnet(pretrained=True, num_classes=num_classes)
     elif 'resnet34_adnet' == args.model:
         my_model = resnet_adnet.resnet34_adnet(pretrained=True, num_classes=num_classes)
-    elif 'alexnet' == args.model:
-        my_model = models.alexnet(pretrained=False, num_classes=num_classes)
-    elif 'resnet18' == args.model:
-        my_model = resnet.resnet18(pretrained=True, num_classes=num_classes) 
     elif 'resnet18_se' == args.model:
         my_model = resnet_se.resnet18_se(pretrained=True, num_classes=num_classes)
     elif 'fcnn18' == args.model:
         my_model = fcnn.fcnn18(pretrained=True, num_classes=num_classes)
+    elif 'tscnn' == args.model:
+        my_model = tscnn.resnet18(pretrained=True, num_classes=num_classes)
     elif 'resnet18_GMM' == args.model:
         my_model = resnet_GMM.resnet18(pretrained=True, num_classes=num_classes)
-    elif 'TSCNN' == args.model:
-        my_model = resnet_tscnn.resnet18(pretrained=True, num_classes=num_classes)
     else:
         raise ModuleNotFoundError
 
-elif 'resnet34' == args.model:
-        my_model = resnet.resnet34(pretrained=True, num_classes=num_classes)
-
-    print(my_model)
+    #print(my_model)
     print(sum([param.nelement() for param in my_model.parameters()]))
     #my_model.apply(fc_init)
     if is_use_cuda and 1 == len(gpus):
@@ -129,7 +129,8 @@ elif 'resnet34' == args.model:
 
     loss_fn = [nn.CrossEntropyLoss()]
     # Adjust the parameters of lr and momentum to train the models
-    optimizer = optim.SGD(my_model.parameters(), lr=0.01, momentum=0.9, weight_decay=1e-4)
+    optimizer = optim.SGD(my_model.parameters(), lr=0.001, momentum=0.9, weight_decay=1e-4)
+    
     lr_schedule = lr_scheduler.MultiStepLR(optimizer, milestones=[30, 60], gamma=0.1)           #
 
     metric = [ClassErrorMeter([1,3], True)]
